@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recursion Examples</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        .boldface {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            font-size: larger;
+        }
+        
+        .card {
+            margin: 10px 10px;
+            height: 300px;
+        }
+        /* Flip Cards CSS */
+        
+        .card-container {
+            display: grid;
+            perspective: 700px;
+        }
+        
+        .card-flip {
+            display: grid;
+            grid-template: 1fr / 1fr;
+            grid-template-areas: "frontAndBack";
+            transform-style: preserve-3d;
+            transition: all 0.7s ease;
+        }
+        
+        .card-flip div {
+            backface-visibility: hidden;
+            transform-style: preserve-3d;
+        }
+        
+        .front {
+            grid-area: frontAndBack;
+        }
+        
+        .back {
+            grid-area: frontAndBack;
+            transform: rotateY(-180deg);
+        }
+        
+        .card-container:hover .card-flip {
+            transform: rotateY(180deg);
+        }
+        
+        .cardimage {
+            width: 75%;
+            height: 50px;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cardblockformat {
+            padding: 5px;
+        }
+        
+        pre {
+            font-size: small !important;
+        }
+        
+        h3 {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: larger;
+            text-align: center;
+            font-weight: bolder;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Mouse over the cards below and review the solution code!</h3>
+    <div class="container">
+        <div class="container">
+            <div class="row">
+
+                <!-- Card 0 -->
+                <div class="col-md-4 card-container">
+                    <div class="card-flip">
+                        <!-- Card 0 Front -->
+                        <div class="card front">
+                            <div class="card-header">
+                                Binary String To Decimal
+                            </div>
+                            <img class="card-image img-fluid" src="images/bintodecrecur.png">
+                        </div>
+                        <!-- End Card 0 Front -->
+
+                        <!-- Card 0 Back -->
+                        <div class="card back">
+                            <div class="card-block cardblockformat">
+                                <div class="card-header">
+                                    binary string -> decimal
+                                </div>
+                                <!--          <h6 class="card-subtitle mb-2 text-muted">Create</h6>-->
+                                <p class="card-text">
+                                    <pre>
+public int binStringToDec(String binStr) {
+    // The base case
+    if (binStr.length() == 0) 
+        return 0;
+    // Recursive case
+    int first = Integer.parseInt(binStr.substring(0, 1));
+    String restOfBinNum = binStr.substring(1);
+    return ((int) Math.pow(2 * first, binStr.length() - 1)
+            + binStringToDec(restOfBinNum));
+}
+                            </pre>
+                                </p>
+
+                            </div>
+                        </div>
+                        <!-- End Card 0 Back -->
+                    </div>
+                </div>
+                <!-- End Card 0 -->
+
+
+
+                <!-- Card 1 -->
+                <div class="col-md-4 card-container">
+                    <div class="card-flip">
+                        <!-- Card 1 Front -->
+                        <div class="card front">
+                            <div class="card-header">
+                                Decimal to Binary String
+                            </div>
+                            <img class="card-image img-fluid" src="images/dectobinrecur.png" class="card-img-top img-fluid">
+
+                        </div>
+                        <!-- End Card 1 Front -->
+
+                        <!-- Card 1 Back -->
+                        <div class="card back">
+                            <div class="card-block cardblockformat">
+                                <div class="card-header">
+                                    decimal to binary string
+                                </div>
+                                <p class="card-text">
+                                    <pre>
+public String decToBinString(int val) {
+    // Base case
+    if (val &lt;= 0) 
+        return "";
+    else { // Recursive case
+        int digit = val % 2;
+        return decToBinString(val / 2) + 
+                "" + digit;
+    }
+
+}
+                                    </pre>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- End Card 1 Back -->
+                    </div>
+                </div>
+                <!-- End Card 1 -->
+
+                <!-- Card 2 -->
+                <div class="col-md-4 card-container">
+                    <div class="card-flip">
+                        <!-- Card 2 Front -->
+                        <div class="card front">
+                            <div class="card-header cardblockformat">
+                                Palindrome?
+                            </div>
+                            <img src="images/pal.png" class="card-img-top img-fluid card-image">
+                            <div class="card-block">
+
+
+                            </div>
+                        </div>
+                        <!-- End Card 2 Front -->
+
+                        <!-- Card 2 Back -->
+                        <div class="card back">
+
+                            <div class="card-block cardblockformat">
+                                <div class="card-header">
+                                    is string a palindrome?
+                                </div>
+                                <pre>
+public boolean isPalindrome(String str)
+{   
+  if(str.length() == 0 || str.length() == 1) // Base case
+    return true; 
+    // Recursive case
+  String first = str.substring(0,1);
+  String last = str.substring(str.length()-1, str.length());
+  if(first.equals(last))
+   return isPalindrome(str.substring(1, str.length()-1));
+  return false;
+}
+                                        </pre>
+                            </div>
+                        </div>
+                        <!-- End Card 2 Back -->
+                    </div>
+                </div>
+                <!-- End Card 2 -->
+
+
+
+
+                <!-- Card 3 -->
+                <div class="col-md-4 card-container">
+                    <div class="card-flip">
+                        <!-- Card 3 Front -->
+                        <div class="card front">
+                            <div class="card-header">
+                                Pesky Consecutive Duplicates!
+                            </div>
+                            <img class="card-image img-fluid" src="images/dupsremover.png" class="card-img-top img-fluid">
+                            <span class="fa fa-4x fa-smile-o text-center"></span>
+
+                        </div>
+                        <!-- End Card 3 Front -->
+
+                        <!-- Card 3 Back -->
+                        <div class="card back">
+                            <div class="card-block cardblockformat">
+                                <div class="card-header">
+                                    get rid of consecutive duplicates ...
+                                </div>
+                                <p class="card-text">
+                                    <pre>
+public String dupsRemover(String str) {
+ // Base case
+ if (str.length() &lt;= 1) 
+    return str;
+ // Recursive case
+ if (str.substring(0, 1).equals(str.substring(1, 2))) 
+    return dupsRemover(str.substring(1));    
+ else 
+    return str.substring(0, 1)
+     + dupsRemover(str.substring(1));
+}
+                    </pre>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- End Card 3 Back -->
+                    </div>
+                </div>
+                <!-- End Card 3 -->
+
+
+
+
+
+                <!-- Card 4 -->
+                <div class="col-md-4 card-container">
+                    <div class="card-flip">
+                        <!-- Card 4 Front -->
+                        <div class="card front">
+                            <div class="card-header">
+                                Reverse Digits In Number
+                            </div>
+                            <img class="card-image img-fluid" src="images/revnum.png" class="card-img-top img-fluid">
+                            <span class="fa fa-4x fa-smile-o text-center"></span>
+
+                        </div>
+                        <!-- End Card 4 Front -->
+
+                        <!-- Card 4 Back -->
+                        <div class="card back">
+                            <div class="card-block cardblockformat">
+                                <div class="card-header">
+                                    reverse digits in number
+                                </div>
+                                <p class="card-text">
+                                    <pre>
+public int reverseNumber(int n, int totalDigits) {
+ if (n <= 9 ) // Base case
+    return n;
+ else { // Recursive case         
+    int lastDigit = n % 10;
+    int firstDigits = n/10;
+    return (int)((lastDigit*Math.pow(10, totalDigits-1) +
+       reverseNumber(firstDigits, totalDigits-1)));
+}
+}
+                    </pre>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- End Card 4 Back -->
+                    </div>
+                </div>
+                <!-- End Card 4 -->
+
+
+
+                <!-- Card 5 -->
+                <div class="col-md-4 card-container">
+                    <div class="card-flip">
+                        <!-- Card 5 Front -->
+                        <div class="card front">
+                            <div class="card-header">
+                                Reverse A String
+                            </div>
+                            <img class="card-image img-fluid" src="images/strrev.png" class="card-img-top img-fluid">
+                            <span class="fa fa-4x fa-smile-o text-center"></span>
+
+                        </div>
+                        <!-- End Card 5 Front -->
+
+                        <!-- Card 5 Back -->
+                        <div class="card back">
+                            <div class="card-block cardblockformat">
+                                <div class="card-header">
+                                    reverse a string
+                                </div>
+                                <p class="card-text">
+                                    <pre>
+public String stringReverser(String str) {
+    if (str.length() <= 1) // Base case
+        return str;
+
+    // Recursive case
+    return stringReverser(str.substring(1)) + 
+                str.substring(0, 1);
+}
+                    </pre>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- End Card 5 Back -->
+                    </div>
+                </div>
+                <!-- End Card 5 -->
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
